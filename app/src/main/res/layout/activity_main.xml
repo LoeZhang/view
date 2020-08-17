@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f0f0f0">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="15dp"
+        android:background="@color/white"
+        android:elevation="5dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.loe.view.TitleView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:title_color="@color/white"
+            app:title_right_text="保存"
+            app:title_text="标题" />
+
+        <com.loe.view.CornerImageView
+            android:id="@+id/image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="15dp"
+            android:src="#4bc"
+            app:radius="5dp" />
+
+        <com.loe.view.AlphaTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="25dp"
+            android:text="点击变色文本"
+            android:textColor="#f55" />
+
+        <com.loe.view.DashLineView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp" />
+
+        <com.loe.view.ImageTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:drawableLeft="@mipmap/ic_launcher_round"
+            android:text="文本"
+            app:image_padding="10dp" />
+
+        <com.loe.view.DeleteMenuLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:text="左滑删除" />
+
+            <com.loe.view.AlphaTextView
+                android:layout_width="80dp"
+                android:layout_height="45dp"
+                android:background="#f00"
+                android:gravity="center"
+                android:text="删除"
+                android:textColor="@color/white" />
+
+        </com.loe.view.DeleteMenuLayout>
+
+        <com.loe.view.StateButton
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="15dp"
+            android:text="状态0"
+            app:button_state="2"
+            app:is_text_change="true"
+            app:state1_background="#f00"
+            app:state1_text="状态1"
+            app:state1_text_color="@color/white"
+            app:state2_background="#0f0"
+            app:state2_text="状态2"
+            app:state2_text_color="#550" />
+
+        <com.loe.view.StretchTextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="延伸文本" />
+
+        <com.loe.view.ToggleImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="25dp"
+            app:toggle_isSelect="true"
+            app:toggle_srcSelect="@mipmap/ic_launcher_round"
+            app:toggle_srcUnSelect="@color/colorPrimary" />
+
+        <com.loe.view.LabelTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="文本"
+            app:label_tail="尾巴"
+            app:label_title="标题：" />
+
+    </LinearLayout>
+
+    <com.loe.view.LetterBarView
+        android:id="@+id/letterView"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_marginVertical="50dp"
+        app:letter_is_bold="true" />
+
+</FrameLayout>
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TitleView">
+        <attr name="title_left_visible" format="boolean" />
+        <attr name="title_left_image" format="reference" />
+        <attr name="title_text" format="string" />
+        <attr name="title_right_text" format="string" />
+        <attr name="title_right_image" format="reference" />
+        <attr name="title_color" format="reference|color" />
+        <attr name="title_background" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="LetterBarView">
+        <attr name="letter_size" format="dimension" />
+        <attr name="letter_color" format="reference|color" />
+        <attr name="letter_select_color" format="reference|color" />
+        <attr name="letter_select_background" format="reference|color" />
+        <attr name="letter_is_bold" format="boolean" />
+        <attr name="letter_chars" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CornerImageView">
+        <attr name="radius" format="dimension"/>
+        <attr name="radius_leftTop" format="dimension"/>
+        <attr name="radius_leftBottom" format="dimension"/>
+        <attr name="radius_rightTop" format="dimension"/>
+        <attr name="radius_rightBottom" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="LabelTextView">
+        <attr name="label_auto_visible" format="boolean" />
+        <attr name="label_title" format="string" />
+        <attr name="label_tail" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="StateButton">
+        <attr name="is_text_change" format="boolean" />
+        <attr name="button_state" format="integer" />
+        <attr name="state1_background" format="color" />
+        <attr name="state1_text_color" format="color" />
+        <attr name="state1_text" format="string" />
+        <attr name="state2_background" format="color" />
+        <attr name="state2_text_color" format="color" />
+        <attr name="state2_text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ImageTextView">
+        <attr name="image_auto_visible" format="boolean" />
+        <attr name="image_top" format="dimension" />
+        <attr name="image_width" format="dimension" />
+        <attr name="image_height" format="dimension" />
+        <attr name="image_padding" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ToggleImageView">
+        <attr name="toggle_isSelect" format="boolean"/>
+        <attr name="toggle_srcUnSelect" format="reference"/>
+        <attr name="toggle_srcSelect" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="DashLineView">
+        <attr name="line_color" format="color"/>
+        <attr name="line_width" format="dimension"/>
+        <attr name="line_dashGap" format="dimension"/>
+        <attr name="line_dashWidth" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="maxHeight" format="dimension" />
+    </declare-styleable>
+</resources>
