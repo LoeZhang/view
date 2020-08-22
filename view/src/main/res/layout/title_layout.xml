@@ -5,11 +5,11 @@
 
     <ImageView
         android:id="@+id/imageLeft"
-        android:layout_width="50dp"
+        android:layout_width="49dp"
         android:layout_height="match_parent"
         android:background="?selectableItemBackgroundBorderless"
         android:clickable="true"
-        android:paddingLeft="17dp"
+        android:paddingLeft="16dp"
         android:paddingRight="17dp"
         android:src="@mipmap/arrow_left_black" />
 
