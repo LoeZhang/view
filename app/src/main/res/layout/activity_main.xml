@@ -27,13 +27,14 @@
             app:title_text="标题" />
 
 
-        <com.loe.view.CornerImageView
+        <com.loe.view.XImageView
             android:id="@+id/image"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:src="#4bc"
-            app:radius="5dp" />
+            android:src="@mipmap/ic_launcher"
+            app:color_filter="#f00"
+            app:radius="15dp" />
 
         <com.loe.view.AlphaTextView
             android:layout_width="wrap_content"

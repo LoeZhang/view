@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 @SuppressLint("AppCompatCustomView")
-public class CornerImageView extends ImageView
+public class XImageView extends ImageView
 {
     float width, height;
 
@@ -23,17 +23,17 @@ public class CornerImageView extends ImageView
     private float rightBottomRadius;
     private float leftBottomRadius;
 
-    public CornerImageView(Context context)
+    public XImageView(Context context)
     {
         this(context, null);
     }
 
-    public CornerImageView(Context context, AttributeSet attrs)
+    public XImageView(Context context, AttributeSet attrs)
     {
         this(context, attrs, 0);
     }
 
-    public CornerImageView(Context context, AttributeSet attrs, int defStyleAttr)
+    public XImageView(Context context, AttributeSet attrs, int defStyleAttr)
     {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
@@ -45,15 +45,15 @@ public class CornerImageView extends ImageView
         {
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.CornerImageView);
-        radius = array.getDimension(R.styleable.CornerImageView_radius, defaultRadius);
-        leftTopRadius = array.getDimension(R.styleable.CornerImageView_radius_leftTop,
+        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.XImageView);
+        radius = array.getDimension(R.styleable.XImageView_radius, defaultRadius);
+        leftTopRadius = array.getDimension(R.styleable.XImageView_radius_leftTop,
                 defaultRadius);
-        rightTopRadius = array.getDimension(R.styleable.CornerImageView_radius_rightTop,
+        rightTopRadius = array.getDimension(R.styleable.XImageView_radius_rightTop,
                 defaultRadius);
-        rightBottomRadius = array.getDimension(R.styleable.CornerImageView_radius_rightBottom,
+        rightBottomRadius = array.getDimension(R.styleable.XImageView_radius_rightBottom,
                 defaultRadius);
-        leftBottomRadius = array.getDimension(R.styleable.CornerImageView_radius_leftBottom,
+        leftBottomRadius = array.getDimension(R.styleable.XImageView_radius_leftBottom,
                 defaultRadius);
         if (defaultRadius == leftTopRadius)
         {
@@ -71,6 +71,13 @@ public class CornerImageView extends ImageView
         {
             leftBottomRadius = radius;
         }
+
+        int color  = array.getColor(R.styleable.XImageView_color_filter, -1);
+        if(color != -1)
+        {
+            setColorFilter(color);
+        }
+
         array.recycle();
     }
 

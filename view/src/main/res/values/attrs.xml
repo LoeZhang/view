@@ -5,6 +5,7 @@
     <attr name="radius_leftBottom" format="dimension"/>
     <attr name="radius_rightTop" format="dimension"/>
     <attr name="radius_rightBottom" format="dimension"/>
+    <attr name="color_filter" format="reference|color"/>
 
     <declare-styleable name="TitleView">
         <attr name="title_left_visible" format="boolean" />
@@ -25,12 +26,13 @@
         <attr name="letter_chars" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="CornerImageView">
+    <declare-styleable name="XImageView">
         <attr name="radius"/>
         <attr name="radius_leftTop"/>
         <attr name="radius_leftBottom"/>
         <attr name="radius_rightTop"/>
         <attr name="radius_rightBottom"/>
+        <attr name="color_filter"/>
     </declare-styleable>
 
     <declare-styleable name="LabelTextView">
