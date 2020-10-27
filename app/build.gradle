@@ -29,7 +29,6 @@ configurations.all {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
 
     implementation project(':view')
 //    implementation 'com.github.LoeZhang:view:0.0.1'

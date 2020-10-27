@@ -3,6 +3,7 @@ package com.loe.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -67,8 +68,17 @@ public class ImageTextView extends TextView
 
     public void setRightImage(int resId)
     {
+        setRightImage(resId, null);
+    }
+
+    public void setRightImage(int resId, Integer color)
+    {
         Drawable d = getResources().getDrawable(resId);
         d.setBounds(0, top, width, height + top);
+        if(color != null)
+        {
+            d.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
         ds[2] = d;
         setCompoundDrawables(ds[0], ds[1], ds[2], ds[3]);
         setCompoundDrawablePadding(padding);
@@ -76,8 +86,17 @@ public class ImageTextView extends TextView
 
     public void setLeftImage(int resId)
     {
+        setLeftImage(resId, null);
+    }
+
+    public void setLeftImage(int resId, Integer color)
+    {
         Drawable d = getResources().getDrawable(resId);
         d.setBounds(0, top, width, height + top);
+        if(color != null)
+        {
+            d.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
         ds[0] = d;
         setCompoundDrawables(ds[0], ds[1], ds[2], ds[3]);
         setCompoundDrawablePadding(padding);
@@ -85,8 +104,17 @@ public class ImageTextView extends TextView
 
     public void setTopImage(int resId)
     {
+        setTopImage(resId, null);
+    }
+
+    public void setTopImage(int resId, Integer color)
+    {
         Drawable d = getResources().getDrawable(resId);
         d.setBounds(0, top, width, height + top);
+        if(color != null)
+        {
+            d.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
         ds[1] = d;
         setCompoundDrawables(ds[0], ds[1], ds[2], ds[3]);
         setCompoundDrawablePadding(padding);
@@ -94,8 +122,17 @@ public class ImageTextView extends TextView
 
     public void setBottomImage(int resId)
     {
+        setBottomImage(resId, null);
+    }
+
+    public void setBottomImage(int resId, Integer color)
+    {
         Drawable d = getResources().getDrawable(resId);
         d.setBounds(0, top, width, height + top);
+        if(color != null)
+        {
+            d.setColorFilter(color, PorterDuff.Mode.SRC_ATOP);
+        }
         ds[3] = d;
         setCompoundDrawables(ds[0], ds[1], ds[2], ds[3]);
         setCompoundDrawablePadding(padding);

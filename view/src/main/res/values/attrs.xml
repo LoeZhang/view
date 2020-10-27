@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="radius" format="dimension"/>
+    <attr name="radius_leftTop" format="dimension"/>
+    <attr name="radius_leftBottom" format="dimension"/>
+    <attr name="radius_rightTop" format="dimension"/>
+    <attr name="radius_rightBottom" format="dimension"/>
 
     <declare-styleable name="TitleView">
         <attr name="title_left_visible" format="boolean" />
@@ -21,11 +26,11 @@
     </declare-styleable>
 
     <declare-styleable name="CornerImageView">
-        <attr name="radius" format="dimension"/>
-        <attr name="radius_leftTop" format="dimension"/>
-        <attr name="radius_leftBottom" format="dimension"/>
-        <attr name="radius_rightTop" format="dimension"/>
-        <attr name="radius_rightBottom" format="dimension"/>
+        <attr name="radius"/>
+        <attr name="radius_leftTop"/>
+        <attr name="radius_leftBottom"/>
+        <attr name="radius_rightTop"/>
+        <attr name="radius_rightBottom"/>
     </declare-styleable>
 
     <declare-styleable name="LabelTextView">

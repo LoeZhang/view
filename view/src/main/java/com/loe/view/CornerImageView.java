@@ -26,13 +26,11 @@ public class CornerImageView extends ImageView
     public CornerImageView(Context context)
     {
         this(context, null);
-        init(context, null);
     }
 
     public CornerImageView(Context context, AttributeSet attrs)
     {
         this(context, attrs, 0);
-        init(context, attrs);
     }
 
     public CornerImageView(Context context, AttributeSet attrs, int defStyleAttr)

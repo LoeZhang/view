@@ -20,10 +20,12 @@
         <com.loe.view.TitleView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            app:title_color="@color/white"
+            android:background="#fff"
+            android:elevation="3dp"
+            app:title_color="#444"
             app:title_right_text="保存"
             app:title_text="标题" />
+
 
         <com.loe.view.CornerImageView
             android:id="@+id/image"
@@ -46,6 +48,7 @@
             android:layout_marginHorizontal="50dp" />
 
         <com.loe.view.ImageTextView
+            android:id="@+id/imageTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
