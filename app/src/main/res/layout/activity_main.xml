@@ -33,7 +33,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
             android:src="@mipmap/ic_launcher"
-            app:color_filter="#f00"
+            app:color_filter="#ffffffff"
             app:radius="15dp" />
 
         <com.loe.view.AlphaTextView

@@ -72,8 +72,8 @@ public class XImageView extends ImageView
             leftBottomRadius = radius;
         }
 
-        int color  = array.getColor(R.styleable.XImageView_color_filter, -1);
-        if(color != -1)
+        int color  = array.getColor(R.styleable.XImageView_color_filter, -2);
+        if(color != -2)
         {
             setColorFilter(color);
         }
