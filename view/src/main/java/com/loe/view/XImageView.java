@@ -14,6 +14,8 @@ import android.widget.ImageView;
 @SuppressLint("AppCompatCustomView")
 public class XImageView extends ImageView
 {
+    private boolean isCorner;
+
     float width, height;
 
     private float defaultRadius = 0;
@@ -72,6 +74,8 @@ public class XImageView extends ImageView
             leftBottomRadius = radius;
         }
 
+        isCorner = leftTopRadius + leftBottomRadius + rightTopRadius + rightBottomRadius > 0;
+
         int color  = array.getColor(R.styleable.XImageView_color_filter, -2);
         if(color != -2)
         {
@@ -85,31 +89,35 @@ public class XImageView extends ImageView
     protected void onLayout(boolean changed, int left, int top, int right, int bottom)
     {
         super.onLayout(changed, left, top, right, bottom);
-        width = getWidth();
-        height = getHeight();
 
-        float l = (width < height ? width : height) / 2;
+        if(isCorner)
+        {
+            width = getWidth();
+            height = getHeight();
 
-        if (leftTopRadius > l)
-        {
-            leftTopRadius = l;
+            float l = (width < height ? width : height) / 2;
+
+            if (leftTopRadius > l)
+            {
+                leftTopRadius = l;
+            }
+            if (leftBottomRadius > l)
+            {
+                leftBottomRadius = l;
+            }
+            if (rightTopRadius > l)
+            {
+                rightTopRadius = l;
+            }
+            if (rightBottomRadius > l)
+            {
+                rightBottomRadius = l;
+            }
+            rectF1 = new RectF(width - 2 * rightTopRadius, 0, width, 2 * rightTopRadius);
+            rectF2 = new RectF(width - 2 * rightBottomRadius, height - 2 * rightBottomRadius, width, height);
+            rectF3 = new RectF(0, height - 2 * leftBottomRadius, 2 * leftBottomRadius, height);
+            rectF4 = new RectF(0, 0, 2 * leftTopRadius, 2 * leftTopRadius);
         }
-        if (leftBottomRadius > l)
-        {
-            leftBottomRadius = l;
-        }
-        if (rightTopRadius > l)
-        {
-            rightTopRadius = l;
-        }
-        if (rightBottomRadius > l)
-        {
-            rightBottomRadius = l;
-        }
-        rectF1 = new RectF(width - 2 * rightTopRadius, 0, width, 2 * rightTopRadius);
-        rectF2 = new RectF(width - 2 * rightBottomRadius, height - 2 * rightBottomRadius, width, height);
-        rectF3 = new RectF(0, height - 2 * leftBottomRadius, 2 * leftBottomRadius, height);
-        rectF4 = new RectF(0, 0, 2 * leftTopRadius, 2 * leftTopRadius);
     }
 
     private RectF rectF1, rectF2, rectF3, rectF4;
@@ -117,22 +125,25 @@ public class XImageView extends ImageView
     @Override
     protected void onDraw(Canvas canvas)
     {
-        Path path = new Path();
-        //四个角：右上，右下，左下，左上
-        path.moveTo(leftTopRadius, 0);
-        path.lineTo(width - rightTopRadius, 0);
-        path.arcTo(rectF1, 270, 90);
+        if(isCorner)
+        {
+            Path path = new Path();
+            //四个角：右上，右下，左下，左上
+            path.moveTo(leftTopRadius, 0);
+            path.lineTo(width - rightTopRadius, 0);
+            path.arcTo(rectF1, 270, 90);
 
-        path.lineTo(width, height - rightBottomRadius);
-        path.arcTo(rectF2, 0, 90);
+            path.lineTo(width, height - rightBottomRadius);
+            path.arcTo(rectF2, 0, 90);
 
-        path.lineTo(leftBottomRadius, height);
-        path.arcTo(rectF3, 90, 90);
+            path.lineTo(leftBottomRadius, height);
+            path.arcTo(rectF3, 90, 90);
 
-        path.lineTo(0, leftTopRadius);
-        path.arcTo(rectF4, 180, 90);
+            path.lineTo(0, leftTopRadius);
+            path.arcTo(rectF4, 180, 90);
 
-        canvas.clipPath(path);
+            canvas.clipPath(path);
+        }
 
         super.onDraw(canvas);
     }
