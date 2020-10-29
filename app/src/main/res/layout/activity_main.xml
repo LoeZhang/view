@@ -79,6 +79,7 @@
         </com.loe.view.DeleteMenuLayout>
 
         <com.loe.view.StateButton
+            android:id="@+id/stateButton"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginHorizontal="15dp"
@@ -115,6 +116,13 @@
             app:label_tail="尾巴"
             app:label_title="标题：" />
 
+        <com.loe.view.SwitchButton
+            android:id="@+id/switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            app:switch_is_checked="true"
+            android:padding="20dp"/>
+
     </LinearLayout>
 
     <com.loe.view.LetterBarView
@@ -124,6 +132,7 @@
         android:layout_gravity="right"
         android:layout_marginVertical="50dp"
         app:letter_is_bold="true" />
+
 
 </FrameLayout>
 

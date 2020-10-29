@@ -23,6 +23,11 @@ class MainActivity : AppCompatActivity()
 
         imageTextView.setLeftImage(R.mipmap.search_black, resources.getColor(R.color.colorPrimary))
 
+        stateButton.setOnClickListener()
+        {
+            switchButton.isChecked = !switchButton.isChecked
+        }
+
 //        var g = GradientDrawable()
 //        g.setColor(ContextCompat.getColor(this, R.color.colorPrimary))
 //        g.cornerRadius = 12f
