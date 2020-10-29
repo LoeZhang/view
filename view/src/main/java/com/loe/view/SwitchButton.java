@@ -60,7 +60,7 @@ public class SwitchButton extends View
             height = RATIO * width;
         }
         r = height / 2f;
-        off = width * 0.08f;
+        off = width * 0.09f;
         offX = off + getPaddingLeft();
         offY = off + getPaddingTop();
 
@@ -79,11 +79,11 @@ public class SwitchButton extends View
         mAnimate = mAnimate - 0.1f > 0 ? mAnimate - 0.15f : 0;
         boolean isAnimate = (!isChecked ? 1 - mAnimate : mAnimate) > 0;
         //平移距离
-        float translate = (width - height) * (!isChecked ? mAnimate : 1 - mAnimate);
+        float translate = (width - height) * (!isChecked ? mAnimate : 1 - mAnimate) - 1f;
 
         //绘制圆角矩形
         mPaint.setColor(mSelectColor);
-        mPaint.setShadowLayer(off, 0, off * 0.2f, 0x25000000);
+        mPaint.setShadowLayer(off, 0, off * 0.2f, 0x28000000);
         canvas.drawRoundRect(new RectF(offX, offY, offX + width, offY + height), r, r, mPaint);
 
         //绘制收缩白色圆角矩形
@@ -101,7 +101,7 @@ public class SwitchButton extends View
 
         // 绘制白色圆形
         mPaint.setColor(Color.WHITE);
-        mPaint.setShadowLayer(off, 0, off * 0.2f, 0x25000000);
+        mPaint.setShadowLayer(off, 0, off * 0.2f, 0x28000000);
         canvas.drawCircle(offX + r + translate, offY + r, r, mPaint);
 
         mPaint.setXfermode(null);
@@ -114,17 +114,25 @@ public class SwitchButton extends View
         }
     }
 
+    private boolean isDown;
+
     @Override
     public boolean onTouchEvent(MotionEvent event)
     {
         switch (event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
+                isDown = true;
                 return true;
             case MotionEvent.ACTION_MOVE:
-                break;
+                isDown = inRangeOfView(event);
+                return true;
             case MotionEvent.ACTION_UP:
-                setChecked(!isChecked);
+                if(isDown)
+                {
+                    setChecked(!isChecked);
+                }
+                isDown = false;
                 break;
         }
         return super.onTouchEvent(event);
@@ -133,6 +141,38 @@ public class SwitchButton extends View
     public boolean isChecked()
     {
         return isChecked;
+    }
+
+    private boolean inRangeOfView(MotionEvent ev)
+    {
+        int[] location = new int[2];
+        getLocationOnScreen(location);
+        int x = location[0];
+        int y = location[1];
+        return !(ev.getRawX() < x || ev.getRawX() > x + this.getWidth() || ev.getRawY() < y || ev.getRawY() > y + this.getHeight());
+    }
+
+    public void setCheckedNoListener(boolean checked)
+    {
+        if (isChecked != checked)
+        {
+            mAnimate = 1;
+            isChecked = checked;
+            invalidate();
+        }
+    }
+
+    public void setCheckedNoAnimate(boolean checked)
+    {
+        if (isChecked != checked)
+        {
+            isChecked = checked;
+            if (mOnCheckedChangeListener != null)
+            {
+                mOnCheckedChangeListener.OnCheckedChanged(isChecked);
+            }
+            invalidate();
+        }
     }
 
     public void setChecked(boolean checked)

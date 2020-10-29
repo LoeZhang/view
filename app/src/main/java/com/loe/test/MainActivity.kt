@@ -25,7 +25,12 @@ class MainActivity : AppCompatActivity()
 
         stateButton.setOnClickListener()
         {
-            switchButton.isChecked = !switchButton.isChecked
+            switchButton.setCheckedNoListener(!switchButton.isChecked)
+        }
+
+        switchButton.setOnCheckedChangeListener()
+        {
+//            Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
         }
 
 //        var g = GradientDrawable()
