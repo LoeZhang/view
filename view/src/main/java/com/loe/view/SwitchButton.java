@@ -5,6 +5,8 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -37,7 +39,7 @@ public class SwitchButton extends View
     {
         super(context, attrs);
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.SwitchButton);
-        mSelectColor = typedArray.getColor(R.styleable.SwitchButton_switch_color, 0xFF2eaa57);
+        mSelectColor = typedArray.getColor(R.styleable.SwitchButton_switch_color, getResources().getColor(R.color.colorPrimary));
         isChecked = typedArray.getBoolean(R.styleable.SwitchButton_switch_is_checked, false);
         typedArray.recycle();
 
@@ -91,10 +93,19 @@ public class SwitchButton extends View
 
         canvas.saveLayer(0, 0, getWidth(), getHeight(), null, Canvas.ALL_SAVE_FLAG);
 
+        mPaint.setColor(Color.WHITE);
+        mPaint.setShadowLayer(0, 0, 0, 0);
+        canvas.drawRoundRect(new RectF(offX + translate, offY - 0.5f, offX + width + 1f, offY + height + 0.5f), r, r, mPaint);
+
+        mPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+
         // 绘制白色圆形
         mPaint.setColor(Color.WHITE);
         mPaint.setShadowLayer(off, 0, off * 0.2f, 0x25000000);
         canvas.drawCircle(offX + r + translate, offY + r, r, mPaint);
+
+        mPaint.setXfermode(null);
+        canvas.restore();
 
         if (isAnimate)
         {
