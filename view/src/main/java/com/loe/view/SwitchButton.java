@@ -60,7 +60,7 @@ public class SwitchButton extends View
             height = RATIO * width;
         }
         r = height / 2f;
-        off = width * 0.09f;
+        off = width * 0.08f;
         offX = off + getPaddingLeft();
         offY = off + getPaddingTop();
 
@@ -83,7 +83,7 @@ public class SwitchButton extends View
 
         //绘制圆角矩形
         mPaint.setColor(mSelectColor);
-        mPaint.setShadowLayer(off, 0, off * 0.2f, 0x28000000);
+        mPaint.setShadowLayer(off + 2, 0, off * 0.2f + 1, 0x33000000);
         canvas.drawRoundRect(new RectF(offX, offY, offX + width, offY + height), r, r, mPaint);
 
         //绘制收缩白色圆角矩形
@@ -101,7 +101,7 @@ public class SwitchButton extends View
 
         // 绘制白色圆形
         mPaint.setColor(Color.WHITE);
-        mPaint.setShadowLayer(off, 0, off * 0.2f, 0x28000000);
+        mPaint.setShadowLayer(off + 2, 0, off * 0.2f + 1, 0x33000000);
         canvas.drawCircle(offX + r + translate, offY + r, r, mPaint);
 
         mPaint.setXfermode(null);
