@@ -108,6 +108,13 @@
             app:toggle_srcSelect="@mipmap/ic_launcher_round"
             app:toggle_srcUnSelect="@color/colorPrimary" />
 
+        <com.loe.view.SwitchButton
+            android:id="@+id/switchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:padding="20dp"
+            app:switch_is_checked="true" />
+
         <com.loe.view.LabelTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -115,13 +122,6 @@
             android:text="文本"
             app:label_tail="尾巴"
             app:label_title="标题：" />
-
-        <com.loe.view.SwitchButton
-            android:id="@+id/switchButton"
-            android:layout_width="wrap_content"
-            android:layout_height="60dp"
-            app:switch_is_checked="true"
-            android:padding="20dp"/>
 
     </LinearLayout>
 
