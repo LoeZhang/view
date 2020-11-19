@@ -4,7 +4,11 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
@@ -33,6 +37,7 @@ public class XImageView extends ImageView
     public XImageView(Context context, AttributeSet attrs)
     {
         this(context, attrs, 0);
+        init(context, attrs);
     }
 
     public XImageView(Context context, AttributeSet attrs, int defStyleAttr)
@@ -43,20 +48,20 @@ public class XImageView extends ImageView
 
     private void init(Context context, AttributeSet attrs)
     {
+        paint = new Paint();
+        paint.setStyle(Paint.Style.FILL);
+        paint.setAntiAlias(true);
+
         if (Build.VERSION.SDK_INT < 18)
         {
             setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         }
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.XImageView);
         radius = array.getDimension(R.styleable.XImageView_radius, defaultRadius);
-        leftTopRadius = array.getDimension(R.styleable.XImageView_radius_leftTop,
-                defaultRadius);
-        rightTopRadius = array.getDimension(R.styleable.XImageView_radius_rightTop,
-                defaultRadius);
-        rightBottomRadius = array.getDimension(R.styleable.XImageView_radius_rightBottom,
-                defaultRadius);
-        leftBottomRadius = array.getDimension(R.styleable.XImageView_radius_leftBottom,
-                defaultRadius);
+        leftTopRadius = array.getDimension(R.styleable.XImageView_radius_leftTop, defaultRadius);
+        rightTopRadius = array.getDimension(R.styleable.XImageView_radius_rightTop, defaultRadius);
+        rightBottomRadius = array.getDimension(R.styleable.XImageView_radius_rightBottom, defaultRadius);
+        leftBottomRadius = array.getDimension(R.styleable.XImageView_radius_leftBottom, defaultRadius);
         if (defaultRadius == leftTopRadius)
         {
             leftTopRadius = radius;
@@ -76,8 +81,8 @@ public class XImageView extends ImageView
 
         isCorner = leftTopRadius + leftBottomRadius + rightTopRadius + rightBottomRadius > 0;
 
-        int color  = array.getColor(R.styleable.XImageView_color_filter, -2);
-        if(color != -2)
+        int color = array.getColor(R.styleable.XImageView_color_filter, -2);
+        if (color != -2)
         {
             setColorFilter(color);
         }
@@ -90,7 +95,7 @@ public class XImageView extends ImageView
     {
         super.onLayout(changed, left, top, right, bottom);
 
-        if(isCorner)
+        if (isCorner)
         {
             width = getWidth();
             height = getHeight();
@@ -122,10 +127,12 @@ public class XImageView extends ImageView
 
     private RectF rectF1, rectF2, rectF3, rectF4;
 
+    private Paint paint;
+
     @Override
     protected void onDraw(Canvas canvas)
     {
-        if(isCorner)
+        if (isCorner)
         {
             Path path = new Path();
             //四个角：右上，右下，左下，左上
@@ -142,9 +149,25 @@ public class XImageView extends ImageView
             path.lineTo(0, leftTopRadius);
             path.arcTo(rectF4, 180, 90);
 
-            canvas.clipPath(path);
-        }
+            // canvas.clipPath(path);
 
-        super.onDraw(canvas);
+            RectF srcRectF = new RectF(0, 0, getWidth(), getHeight());
+
+            canvas.saveLayer(srcRectF, null, Canvas.ALL_SAVE_FLAG);
+            // ImageView自身的绘制流程，即绘制图片
+            super.onDraw(canvas);
+            // 设置混合模式
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+            // 绘制path
+            canvas.drawPath(path, paint);
+            // 清除Xfermode
+            paint.setXfermode(null);
+            // 恢复画布状态
+            canvas.restore();
+        }
+        else
+        {
+            super.onDraw(canvas);
+        }
     }
 }
