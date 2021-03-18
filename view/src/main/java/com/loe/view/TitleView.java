@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -69,6 +70,8 @@ public class TitleView extends FrameLayout
 
         textTitle = (TextView) layout.findViewById(R.id.textTitle);
         setTitle(typedArray.getString(R.styleable.TitleView_title_text));
+        setTitleBold(typedArray.getBoolean(R.styleable.TitleView_title_bold, true));
+        setTitleSize(typedArray.getDimension(R.styleable.TitleView_title_size, 0));
 
         textRight = (TextView) layout.findViewById(R.id.textRight);
         setRight(typedArray.getString(R.styleable.TitleView_title_right_text));
@@ -128,6 +131,29 @@ public class TitleView extends FrameLayout
     public void setTitle(String title)
     {
         textTitle.setText(title);
+    }
+
+    /**
+     * 设置标题文字粗体
+     */
+    public void setTitleBold(Boolean isBold)
+    {
+        textTitle.setTypeface(isBold ? Typeface.DEFAULT_BOLD : Typeface.DEFAULT);
+    }
+
+    /**
+     * 设置标题文字大小
+     */
+    public void setTitleSize(float size)
+    {
+        size = px_dp(size);
+
+        if (size < 4)
+        {
+            size = 16;
+        }
+
+        textTitle.setTextSize(size);
     }
 
     /**
@@ -195,5 +221,11 @@ public class TitleView extends FrameLayout
         };
         textRight.setOnClickListener(rightListener);
         imageRight.setOnClickListener(rightListener);
+    }
+
+    public int px_dp(float pxValue)
+    {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
     }
 }
