@@ -69,6 +69,7 @@
 
     <declare-styleable name="ToggleImageView">
         <attr name="toggle_isSelect" format="boolean"/>
+        <attr name="toggle_clickable" format="boolean"/>
         <attr name="toggle_srcUnSelect" format="reference"/>
         <attr name="toggle_srcSelect" format="reference"/>
     </declare-styleable>

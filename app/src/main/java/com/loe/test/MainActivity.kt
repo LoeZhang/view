@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity()
         stateButton.setOnClickListener()
         {
             switchButton.setCheckedNoListener(!switchButton.isChecked)
+            toggleImage.isSelect = !toggleImage.isSelect
+
+            toggleImage.isToggleClickable = true
         }
 
         switchButton.setOnCheckedChangeListener()

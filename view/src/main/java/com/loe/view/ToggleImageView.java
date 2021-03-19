@@ -12,6 +12,8 @@ public class ToggleImageView extends ImageView
 {
     private boolean isSelect;
 
+    private boolean clickable;
+
     private int srcUnSelect;
     private int srcSelect;
 
@@ -40,6 +42,7 @@ public class ToggleImageView extends ImageView
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.ToggleImageView);
 
         isSelect = array.getBoolean(R.styleable.ToggleImageView_toggle_isSelect, false);
+        clickable = array.getBoolean(R.styleable.ToggleImageView_toggle_clickable, true);
         srcUnSelect = array.getResourceId(R.styleable.ToggleImageView_toggle_srcUnSelect, 0);
         srcSelect = array.getResourceId(R.styleable.ToggleImageView_toggle_srcSelect, 0);
         resetSelect();
@@ -49,10 +52,13 @@ public class ToggleImageView extends ImageView
             @Override
             public void onClick(View view)
             {
-                setSelect(!isSelect);
-                if (onChangeListener != null)
+                if(clickable)
                 {
-                    onChangeListener.onChanged(isSelect);
+                    setSelect(!isSelect);
+                    if (onChangeListener != null)
+                    {
+                        onChangeListener.onChanged(isSelect);
+                    }
                 }
             }
         });
@@ -72,6 +78,16 @@ public class ToggleImageView extends ImageView
     {
         isSelect = select;
         resetSelect();
+    }
+
+    public boolean isToggleClickable()
+    {
+        return clickable;
+    }
+
+    public void setToggleClickable(boolean clickable)
+    {
+        this.clickable = clickable;
     }
 
     public int getSrcUnSelect()

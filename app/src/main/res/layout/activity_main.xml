@@ -101,10 +101,12 @@
             android:text="延伸文本" />
 
         <com.loe.view.ToggleImageView
+            android:id="@+id/toggleImage"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="25dp"
             app:toggle_isSelect="true"
+            app:toggle_clickable="false"
             app:toggle_srcSelect="@mipmap/ic_launcher_round"
             app:toggle_srcUnSelect="@color/colorPrimary" />
 
