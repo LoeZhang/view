@@ -2,9 +2,12 @@ package com.loe.view;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.View;
+
+import java.util.ArrayList;
 
 @SuppressLint("AppCompatCustomView")
 public class RecyclerScrollView extends RecyclerView
@@ -40,5 +43,22 @@ public class RecyclerScrollView extends RecyclerView
     {
         int expandSpec = View.MeasureSpec.makeMeasureSpec(Integer.MAX_VALUE >> 2, View.MeasureSpec.AT_MOST);
         super.onMeasure(widthMeasureSpec, expandSpec);
+    }
+
+    private ArrayList<OnItemTouchListener> listeners = new ArrayList<>();
+
+    @Override
+    public void addOnItemTouchListener(@NonNull OnItemTouchListener listener)
+    {
+        listeners.add(listener);
+        super.addOnItemTouchListener(listener);
+    }
+
+    public void clearItemTouchListener()
+    {
+        for(OnItemTouchListener listener: listeners)
+        {
+            removeOnItemTouchListener(listener);
+        }
     }
 }
