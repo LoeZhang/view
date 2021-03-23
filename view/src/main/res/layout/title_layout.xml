@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="标题"
-        android:textColor="#444444"
+        android:textColor="@color/textColor"
         android:textSize="18dp" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:paddingLeft="15dp"
         android:paddingRight="15dp"
         android:text="保存"
-        android:textColor="#444444"
+        android:textColor="@color/textColor"
         android:textSize="14dp" />
 
     <ImageView
