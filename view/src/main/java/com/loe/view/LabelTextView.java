@@ -87,7 +87,7 @@ public class LabelTextView extends TextView
 
     public void setLabel(String label)
     {
-        this.label = label;
+        this.label = label == null ? "" : label;
         notifyText();
     }
 
@@ -109,7 +109,7 @@ public class LabelTextView extends TextView
 
     public void setTitleColor(int color)
     {
-        this.titleColor = String.format("#%06X",0xFFFFFF & color);
+        this.titleColor = String.format("#%06X", 0xFFFFFF & color);
         notifyText();
     }
 
@@ -135,8 +135,8 @@ public class LabelTextView extends TextView
         }
 
         notifyVisible(label);
-        String titleF = "<font color='"+titleColor+"'>" + title + "</font>";
-        String tailF = "<font color='"+tailColor+"'>" + tail + "</font>";
+        String titleF = "<font color='" + titleColor + "'>" + title + "</font>";
+        String tailF = "<font color='" + tailColor + "'>" + tail + "</font>";
 
         super.setText(Html.fromHtml(titleF + label + tailF));
     }
