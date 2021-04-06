@@ -45,7 +45,10 @@
     <declare-styleable name="LabelTextView">
         <attr name="label_auto_visible" format="boolean" />
         <attr name="label_title" format="string" />
+        <attr name="label_title_color" format="color" />
+        <attr name="label_label" format="string" />
         <attr name="label_tail" format="string" />
+        <attr name="label_tail_color" format="color" />
     </declare-styleable>
 
     <declare-styleable name="StateButton">

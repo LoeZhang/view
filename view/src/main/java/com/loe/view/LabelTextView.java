@@ -3,6 +3,7 @@ package com.loe.view;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.text.Html;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
@@ -11,7 +12,12 @@ public class LabelTextView extends TextView
 {
     protected String title = "";
     protected String tail = "";
-    protected String text = "";
+    protected String label = "";
+
+    private String titleColor = "";
+    private String tailColor = "";
+
+    private boolean isLock = false;
 
     protected boolean isAutoVisible;
 
@@ -41,10 +47,20 @@ public class LabelTextView extends TextView
 
     private void init(Context context, TypedArray typedArray)
     {
-        text = super.getText().toString();
-        setAutoVisible(typedArray.getBoolean(R.styleable.LabelTextView_label_auto_visible,false));
+        isLock = true;
+        label = super.getText().toString();
+
+        setAutoVisible(typedArray.getBoolean(R.styleable.LabelTextView_label_auto_visible, false));
         setTitle(typedArray.getString(R.styleable.LabelTextView_label_title));
+        setLabel(label.isEmpty() ? typedArray.getString(R.styleable.LabelTextView_label_label) : label);
         setTail(typedArray.getString(R.styleable.LabelTextView_label_tail));
+
+        setTitleColor(typedArray.getColor(R.styleable.LabelTextView_label_title_color, getTextColors().getDefaultColor()));
+        setTailColor(typedArray.getColor(R.styleable.LabelTextView_label_tail_color, getTextColors().getDefaultColor()));
+
+
+        isLock = false;
+        notifyText();
     }
 
     public void setTitle(String title)
@@ -69,15 +85,15 @@ public class LabelTextView extends TextView
         return tail;
     }
 
-    public void setText(String text)
+    public void setLabel(String label)
     {
-        this.text = text;
+        this.label = label;
         notifyText();
     }
 
-    public String getText()
+    public String getLabel()
     {
-        return text;
+        return label;
     }
 
     public boolean isAutoVisible()
@@ -88,7 +104,19 @@ public class LabelTextView extends TextView
     public void setAutoVisible(boolean autoVisible)
     {
         isAutoVisible = autoVisible;
-        notifyVisible(text);
+        notifyVisible(label);
+    }
+
+    public void setTitleColor(int color)
+    {
+        this.titleColor = String.format("#%06X",0xFFFFFF & color);
+        notifyText();
+    }
+
+    public void setTailColor(int color)
+    {
+        this.tailColor = String.format("#%06X", 0xFFFFFF & color);
+        notifyText();
     }
 
     protected void notifyVisible(String s)
@@ -101,7 +129,15 @@ public class LabelTextView extends TextView
 
     private void notifyText()
     {
-        notifyVisible(text);
-        super.setText(title + text + tail);
+        if (isLock)
+        {
+            return;
+        }
+
+        notifyVisible(label);
+        String titleF = "<font color='"+titleColor+"'>" + title + "</font>";
+        String tailF = "<font color='"+tailColor+"'>" + tail + "</font>";
+
+        super.setText(Html.fromHtml(titleF + label + tailF));
     }
 }

@@ -105,8 +105,8 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="25dp"
-            app:toggle_isSelect="true"
             app:toggle_clickable="false"
+            app:toggle_isSelect="true"
             app:toggle_srcSelect="@mipmap/ic_launcher_round"
             app:toggle_srcUnSelect="@color/colorPrimary" />
 
@@ -121,9 +121,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:text="文本"
+            android:textColor="#f00"
+            app:label_label="都是对的所"
             app:label_tail="尾巴"
-            app:label_title="标题：" />
+            app:label_title="标题："
+            app:label_title_color="#ffff00" />
 
     </LinearLayout>
 
